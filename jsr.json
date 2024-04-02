@@ -1,0 +1,18 @@
+{
+  "name": "@zhengxs/js-tree",
+  "version": "0.1.0",
+  "description": "A tree data structure for JavaScript",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./operators": "./operators/mod.ts",
+    "./operators/each": "./operators/each.ts",
+    "./operators/exclude": "./operators/exclude.ts",
+    "./operators/filter": "./operators/filter.ts",
+    "./operators/map": "./operators/map.ts",
+    "./operators/repair": "./operators/repair.ts"
+  },
+  "publish": {
+    "include": ["README.md", "LICENSE", "jsr.json", "src/**/*.ts", "operators/**/*.ts"],
+    "exclude": ["**/*.test.ts"]
+  }
+}
