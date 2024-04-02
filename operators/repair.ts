@@ -6,40 +6,62 @@
 import { CHILDREN_KEY, ID_KEY, PARENT_ID_KEY } from "../src/constants.ts";
 import type { ID, Node } from "../src/types.ts";
 
-export type RepairConfig<
-  T extends object = object,
-  U extends Node = Node,
-> = {
+/**
+ * 配置项
+ */
+export type RepairOptions<T extends object = object, U extends Node = Node> = {
+  /**
+   * 节点 ID 键名
+   *
+   * @defaultValue 'id'
+   */
   idKey?: string;
+  /**
+   * 父节点 ID 键名
+   *
+   * @defaultValue 'parentId'
+   */
   parentKey?: string;
+  /**
+   * 子节点键名
+   *
+   * @defaultValue 'children'
+   */
   childrenKey?: string;
-  resolve: (id: ID) => T;
-  insert?: (list: U[], node: U) => void;
+  /**
+   * 根据缺失节点唯一ID返回缺失节点数据
+   *
+   * @param id - 缺失节点唯一ID
+   * @returns 缺失节点数据
+   */
+  resolve: (id: ID) => T | null | undefined;
+  /**
+   * 自定义插入函数
+   *
+   * @param siblings - 兄弟节点列表
+   * @param node - 待插入的缺失节点
+   */
+  insert?: (siblings: U[], node: U) => void;
 };
-
-export type RepairOptions<
-  T extends object = object,
-  U extends Node = Node,
-> = Required<RepairConfig<T, U>>;
 
 /**
  * 根据列表修复缺失的节点数据
  *
- * @param list - 不完整列表数据
- * @param  config - 配置参数
+ * @param data - 不完整列表数据
+ * @param  options - 配置项
  * @returns 已修复好的数结构
  */
-export const repair = <T extends object = object, U extends Node = Node>(
-  list: T[],
-  config: RepairConfig<T, U>,
-): U[] => {
+export function repair<T extends object = object, U extends Node = Node>(
+  data: T[],
+  options: RepairOptions<T, U>
+): U[] {
   const {
     idKey = ID_KEY,
     parentKey = PARENT_ID_KEY,
     childrenKey = CHILDREN_KEY,
     resolve,
-    insert = (list: U[], node: U) => list.push(node),
-  } = config;
+    insert = (siblings: U[], node: U) => siblings.push(node),
+  } = options;
 
   const rootNodes: U[] = [];
   const parents: Record<ID, U> = {};
@@ -83,7 +105,7 @@ export const repair = <T extends object = object, U extends Node = Node>(
     repair_node_links(target);
   };
 
-  list.forEach((item) => {
+  data.forEach((item) => {
     // @ts-expect-error ignore type error
     const data = resolve(item[idKey] as ID);
     if (!data) return;
@@ -92,4 +114,4 @@ export const repair = <T extends object = object, U extends Node = Node>(
   });
 
   return rootNodes;
-};
+}

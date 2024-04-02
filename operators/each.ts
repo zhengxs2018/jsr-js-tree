@@ -12,6 +12,34 @@ import { get } from "../src/utils.ts";
  * @param data         - 数结构数据
  * @param callback     - 处理回调，返回 true 将跳过子级的遍历操作
  * @param childrenKey  - 自定义子节点属性名称
+ *
+ * @example
+ *
+ * ```ts
+ * import { each } from 'jsr:@zhengxs/js.tree'
+ *
+ * const data = [
+ *   {
+ *     title: '财务',
+ *     children: [{ title: '收入流失' }, { title: '财务设置' }],
+ *   },
+ *   {
+ *     title: '站点设置',
+ *     children: [{ title: '菜单维护' }, { title: '角色维护' }],
+ *   }
+ * ]
+ *
+ * each(data, (node) => {
+ *   // 返回 true 将跳过子级的遍历操作
+ *   if (node.title === '财务') return true
+ *
+ *   console.log(node.title)
+ * })
+ *
+ * // -> 站点设置
+ * // -> 菜单维护
+ * // -> 角色维护
+ * ```
  */
 export function each<T extends object = object>(
   data: T[],
