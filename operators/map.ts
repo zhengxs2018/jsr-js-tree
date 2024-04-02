@@ -1,3 +1,8 @@
+/**
+ * 树结构转换
+ *
+ * @module
+ */
 import { CHILDREN_KEY } from "../src/constants.ts";
 import { get } from "../src/utils.ts";
 

@@ -40,20 +40,20 @@
 
 ## 安装
 
-主要发布到 [jsr](https://jsr.io/) 平台，非传统 NPM 项目。
+主要发布到 [jsr.io](https://jsr.io/) 平台，非传统 NPM 项目。
 
 ```sh
 # deno
 $ deno add @zhengxs/js-tree
 
 # npm (one of the below, depending on your package manager)
-$ npx jsr add @luca/cases
+$ npx jsr add @zhengxs/js-tree
 
-$ yarn dlx jsr add @luca/cases
+$ yarn dlx jsr add @zhengxs/js-tree
 
-$ pnpm dlx jsr add @luca/cases
+$ pnpm dlx jsr add @zhengxs/js-tree
 
-$ bunx jsr add @luca/cases
+$ bunx jsr add @zhengxs/js-tree
 ```
 
 详见 [Using packages](https://jsr.io/docs/using-packages).

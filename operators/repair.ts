@@ -1,3 +1,8 @@
+/**
+ * 节点关系修复
+ *
+ * @module
+ */
 import { CHILDREN_KEY, ID_KEY, PARENT_ID_KEY } from "../src/constants.ts";
 import type { ID, Node } from "../src/types.ts";
 

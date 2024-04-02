@@ -1,3 +1,8 @@
+/**
+ * 树节点过滤
+ *
+ * @module
+ */
 import { CHILDREN_KEY } from "../src/constants.ts";
 import { get } from "../src/utils.ts";
 

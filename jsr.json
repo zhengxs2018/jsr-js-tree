@@ -1,7 +1,6 @@
 {
   "name": "@zhengxs/js-tree",
-  "version": "0.1.0",
-  "description": "A tree data structure for JavaScript",
+  "version": "0.1.1",
   "exports": {
     ".": "./src/mod.ts",
     "./operators": "./operators/mod.ts",
